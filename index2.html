@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documents</title>
+</head>
+<body>
+
+  <h2>1. Guessing Game</h2>
+  <p>Guess a number between 1 and 10:</p>
+  <input type="number" id="guessInput" placeholder="Enter your guess">
+  <button onclick="guessingGame()">Submit Guess</button>
+  <p id="guessResult"></p>
+
+  <h2>2. Add and Display Array</h2>
+  <input type="text" id="inputValue" placeholder="Enter a value">
+  <button onclick="addItem()">Add</button>
+  <button onclick="displayItems()">Display</button>
+  <div id="output"></div>
+
+  <script>
+    let randomNumber = Math.floor(Math.random() * 10) + 1;
+
+    function guessingGame() {
+      let userGuess = parseInt(document.getElementById("guessInput").value);
+
+      if (userGuess === randomNumber) {
+        document.getElementById("guessResult").textContent = "Good Work!";
+      } else {
+        document.getElementById("guessResult").textContent = 
+          `Not matched. The correct number was ${randomNumber}. Try again!`;
+
+        randomNumber = Math.floor(Math.random() * 10) + 1;
+      }
+    }
+
+    let itemsArray = [];
+
+    function addItem() {
+      const input = document.getElementById("inputValue").value;
+
+      if (input) {
+        itemsArray.push(input); 
+        document.getElementById("inputValue").value = ""; 
+        alert("Item added!");
+      } else {
+        alert("Please enter a value");
+      }
+    }
+
+    function displayItems() {
+      const outputDiv = document.getElementById("output");
+      outputDiv.innerHTML = ""; 
+
+      itemsArray.forEach((item, index) => {
+        outputDiv.innerHTML += `Element ${index + 1} = ${item} <br>`;
+      });
+    }
+  </script>
+</body>
+</html>
